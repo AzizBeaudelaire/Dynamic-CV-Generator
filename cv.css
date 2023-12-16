@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.page {
+    width: 8.5in;
+    height: 11in;
+    margin: 50px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.banner {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar {
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(to bottom, #e74c3c, #f39c12);
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.section {
+    flex-grow: 1; /* Pour occuper tout l'espace disponible */
+    padding: 20px;
+    background-color: #2ecc71;
+}
+
+.footer {
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+}

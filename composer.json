@@ -1,0 +1,6 @@
+{
+    "require": {
+        "mpdf/mpdf": "^5.7",
+      "ext-pdo": "*"
+    }
+}
