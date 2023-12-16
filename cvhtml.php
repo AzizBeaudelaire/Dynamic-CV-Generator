@@ -1,4 +1,5 @@
-git<!DOCTYPE html>
+<?php include 'cv.php'; ?>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -11,13 +12,13 @@ git<!DOCTYPE html>
     <div class="banner">
         <div class="left">
             <div class="image">
-                <img src="images/<?php echo
-                $picture; ?>" alt="Photo">
+                <img src="images/<?php echo $picture; ?>" alt="Photo">
             </div>
         </div>
         <div class="right">
             <div>
                 <h1><?php echo $fullname; ?></h1>
+                <?= $_POST['fullname']?>
                 <h3>(<?php echo $profession; ?>)</h3>
                 <?php echo "Bonjour"; ?>
             </div>

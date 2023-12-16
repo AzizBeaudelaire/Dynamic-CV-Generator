@@ -1,14 +1,15 @@
     <?php
     require_once __DIR__ . '/vendor/autoload.php';
     require_once 'class.php';
+    include 'cvhtml.php';
 
     echo 'bonjour1';
 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    function getCVData() {
-        $db = new PDO('sqlite:' . __DIR__ . '/db.sqlite');
+
+    function getCVData($db) {
         $query = $db->query('SELECT * FROM cv_data ORDER BY id DESC LIMIT 1');
         return $query->fetch(PDO::FETCH_ASSOC);
     }
@@ -97,7 +98,7 @@
 
         $banner = new Banner($fullname, $profession, $picture);
         $sidebar = new Sidebar($objective);
-        $center = new Center($competences, $formation, $experience, $hobbies, $certificate1, $certificate2, $certificate3);
+        $container = new Container($competences, $formation, $experience, $hobbies, $certificate1, $certificate2, $certificate3);
         $footer = new Footer($mobile, $email);
 
 
@@ -140,7 +141,6 @@
 
         // Load the HTML content from cv_html.php
         ob_start();
-        include 'cvhtml.php';
         $html = ob_get_clean();
 
         $mpdf->WriteHTML($html);
