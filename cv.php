@@ -1,9 +1,9 @@
     <?php
     require_once __DIR__ . '/vendor/autoload.php';
     require_once 'class.php';
-    include 'cvhtml.php';
+    use Dompdf\Options;
 
-    echo 'bonjour1';
+    echo 'test1';
 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
@@ -22,6 +22,7 @@
         echo "Connection failed: " . $e->getMessage();
     }
 
+    echo 'test2';
 
     // Create table if not exists
     if (isset($pdo)) {
@@ -50,6 +51,8 @@
         )";
         $pdo->exec($sql);
     }
+
+    echo 'test3';
 
     if (isset($_POST['btn'])) {
         // Personal Information
@@ -128,27 +131,35 @@
 
         $insertQuery->execute();
 
+        echo 'test4';
+        echo $fullname; // est renvoyé donc ça marche la recup de donnée
+
         // Récupérer les données après l'insertion
-        $cvData = getCVData();
+        $cvData = getCVData($db);
 
-        include "vendor/autoload.php";
-        $mpdf = new \Mpdf\Mpdf(['margin_top' => 2, 'margin_right' => 2, 'margin_bottom' => 2, 'margin_left' => 2]);
-        $mpdf->SetDisplayMode('fullpage');
+        require_once 'vendor/autoload.php';
 
-        // Charger le fichier cv.css
+    // Charger le fichier cv.css
         $style = file_get_contents('cv.css');
-        $mpdf->WriteHTML($style, 1);
 
-        // Load the HTML content from cv_html.php
+    // Load the HTML content from cv_html.php
         ob_start();
+        include 'cvhtml.php'; // Assurez-vous que le chemin d'inclusion est correct
         $html = ob_get_clean();
 
-        $mpdf->WriteHTML($html);
-        $mpdf->Output('MyCV.pdf', 'd');
+    // Instancie les options de Dompdf
+        $options = new Dompdf\Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
 
-        echo 'bonjour2';
+        $dompdf = new Dompdf\Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+
+// Output the generated PDF to Browser
+        $dompdf->stream('MyCV.pdf');
+
+        echo 'test6';
 
     }
-
-
-    //en gros il faut créer une fonction qui recup tout les valeurs et qui passe en appelant un fichier resume.php qui s'occupe de faire ls classes pour toutes nos partis (partie bannière, partie sidebar, partie centre, partie footer)

@@ -13,18 +13,30 @@ class Banner {
 
     public function getHTML() {
         return "
-            <div class='banner'>
-                <div class='left'>
-                    <div class='image'>
-                        <img src='images/{$this->picture}' alt='Photo'>
-                    </div>
+            <div class='container'>
+                <div class='competences'>
+                    <h2>Compétences</h2>
+                    <p>{$this->competences}</p>
                 </div>
-                <div class='right'>
-                    <div>
-                        <h1>{$this->fullname}</h1>
-                        <h3>({$this->profession})</h3>
-                        <p>Bonjour</p>
-                    </div>
+                <div class='formation'>
+                    <h2>Formation</h2>
+                    <p>{$this->formation}</p>
+                </div>
+                <div class='experience'>
+                    <h2>Expérience</h2>
+                    <p>{$this->experience}</p>
+                </div>
+                <div class='hobbies'>
+                    <h2>Hobbies</h2>
+                    <p>{$this->hobbies}</p>
+                </div>
+                <div class='certificates'>
+                    <h2>Certificats</h2>
+                    <ul>
+                        <li>{$this->certificate1}</li>
+                        <li>{$this->certificate2}</li>
+                        <li>{$this->certificate3}</li>
+                    </ul>
                 </div>
             </div>";
     }
@@ -66,25 +78,53 @@ class Footer {
 }
 
 class Container {
-    private $banner;
-    private $sidebar;
-    private $footer;
+    private $competences;
+    private $formation;
+    private $experience;
+    private $hobbies;
+    private $certificate1;
+    private $certificate2;
+    private $certificate3;
 
-    public function __construct(Banner $banner, Sidebar $sidebar, Footer $footer) {
-        $this->banner = $banner;
-        $this->sidebar = $sidebar;
-        $this->footer = $footer;
+    public function __construct($competences, $formation, $experience, $hobbies, $certificate1, $certificate2, $certificate3) {
+        $this->competences = $competences;
+        $this->formation = $formation;
+        $this->experience = $experience;
+        $this->hobbies = $hobbies;
+        $this->certificate1 = $certificate1;
+        $this->certificate2 = $certificate2;
+        $this->certificate3 = $certificate3;
     }
 
     public function getHTML() {
         return "
-            <div class='page'>
-                {$this->banner->getHTML()}
-                <div class='section'>
-                    {$this->sidebar->getHTML()}
-                    {$this->footer->getHTML()}
+            <div class='container'>
+                <div class='competences'>
+                    <h2>Compétences</h2>
+                    <p>{$this->competences}</p>
+                </div>
+                <div class='formation'>
+                    <h2>Formation</h2>
+                    <p>{$this->formation}</p>
+                </div>
+                <div class='experience'>
+                    <h2>Expérience</h2>
+                    <p>{$this->experience}</p>
+                </div>
+                <div class='hobbies'>
+                    <h2>Hobbies</h2>
+                    <p>{$this->hobbies}</p>
+                </div>
+                <div class='certificates'>
+                    <h2>Certificats</h2>
+                    <ul>
+                        <li>{$this->certificate1}</li>
+                        <li>{$this->certificate2}</li>
+                        <li>{$this->certificate3}</li>
+                    </ul>
                 </div>
             </div>";
     }
 }
+
 ?>

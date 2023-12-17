@@ -1,6 +1,7 @@
 {
     "require": {
         "mpdf/mpdf": "^5.7",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+        "dompdf/dompdf": "^0.6.2"
     }
 }
